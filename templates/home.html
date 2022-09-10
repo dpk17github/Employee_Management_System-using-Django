@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock title %}
+{% block heading %} <a href="/" class="navbar-brand text-dark"><h6>Welcome To Home Page </h6></a>{% endblock heading %}
+
+{% block body %}
+<div class="container my-2">
+    <img src="/static/img/office.png" height="400px" width="100%">
+</div>
+<div class="container">
+    <nav class="navbar bg-secondaryn">
+        <form class="container-fluid justify-content-start" align="center">
+            <div class="container">
+                <a class="btn btn-sm btn-warning" type="button" href="/viewEmp">Views All Employees </a>
+                <a class="btn btn-sm btn-success" type="button" href="/addEmp">Add An Employee </a>
+                <a class="btn btn-sm btn-info" type="button" href="/updateEmp">Update An Employee </a>
+                <a class="btn btn-sm btn-danger" type="button" href="/removeEmp">Remove An Employee</a>
+                <a class="btn btn-sm btn-primary" type="button" href="/filterEmp">Filter An Employee</a>
+            </div>
+        </form>
+      </nav>
+    </div> 
+
+{% endblock body%}

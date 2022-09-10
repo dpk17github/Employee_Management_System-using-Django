@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Add An Employee{% endblock title %}
+{% block heading %} <a href="/addEmp" class="navbar-brand text-success"><h6>Add An Employee</h6></a> {% endblock heading %}
+{% block body %}
+<div class="container my-2">
+    <img src="/static/img/addemp.png" height="300px" width="100%">
+    <form class="m-2" action="/addEmp" method="post">
+        {% csrf_token %}
+        <div class="mb-1">
+            <label for="firstname" class="form-label text-success">First Name</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter first name here.." required>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-success">Last Name</label>
+            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter last name here.." required>
+        </div>
+        <div class="mb-1">
+            <label for="exampleInputEmail1" class="form-label text-success">Email address</label>
+            <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Enter email address here.." name="email" required>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-success">Salary</label>
+            <input type="number" class="form-control" id="salary" name="salary" placeholder="Enter salary here.." required>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-success">Bonus</label>
+            <input type="number" class="form-control" id="bonus" name="bonus" placeholder="Enter bonus here.." required>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-success">Department</label>
+            <select class="form-select" aria-label="Default select example" name="department" required>
+                <option selected>Select Department here</option>
+                {% for dept in alldept %}
+                <option value="{{forloop.counter}}">{{dept.name}}</option>
+                {% endfor %}
+              </select>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-success">Role</label>
+            <select class="form-select" aria-label="Default select example" name="role" required>
+                <option selected>Select Role here</option>
+                {% for role in allrole %}
+                <option value="{{forloop.counter}}">{{role.name}}</option>
+                {% endfor %}
+              </select>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-success">Phone Number</label>
+            <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter phone number here.." required>
+        </div>
+        <div class="mb-2">
+            <label for="lastname" class="form-label text-success">Hire Date</label>
+            <input type="date" class="form-control" id="hire" name="hire" placeholder="Enter hire date here.." required>
+        </div>
+        <div class="mb-2 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="check">
+            <label class="form-check-label" for="exampleCheck1">Are you sure about all details</label>
+        </div>
+        <button type="submit" class="btn btn-sm btn-success">Add Employee</button>
+    </form>
+</div>
+<div class="container">
+    <nav class="navbar bg-secondary">
+        <form class="container-fluid justify-content-start" align="center">
+            <div class="container">
+                <a class="btn btn-sm btn-warning" type="button" href="/viewEmp">Views All Employee Details</a>
+                <a class="btn btn-sm btn-success" type="button" href="/addEmp">Add An Employee </a>
+                <a class="btn btn-sm btn-info" type="button" href="/updateEmp">Update An Employee </a>
+                <a class="btn btn-sm btn-danger" type="button" href="/removeEmp">Remove An Employee</a>
+                <a class="btn btn-sm btn-primary" type="button" href="/filterEmp">Filter An Employee Details</a>
+            </div>
+        </form>
+      </nav>
+    </div> 
+
+{% endblock body%}

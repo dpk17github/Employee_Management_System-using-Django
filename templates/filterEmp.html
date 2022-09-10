@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Filter An Employee{% endblock title %}
+{% block heading %} <a href="/filterEmp" class="navbar-brand text-primary"><h6>Filter An Employee</h6></a>{% endblock heading %}
+{% block body %}
+
+<div class="container my-2">
+    <img src="/static/img/find.png" height="300px" width="100%">
+    <form class="m-2" action="/filterEmp" method="post">
+        {% csrf_token %}
+        <div class="mb-1">
+            <label for="firstname" class="form-label text-primary">Name Wise Filter </label>
+            <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" name="nameswitch" type="checkbox" role="switch" id="nameswitch">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+              </div>
+            <input type="text" class="form-control" id="firstname" name="name" placeholder="Enter first name here..">
+        </div>
+        <div class="mb-1">
+            <label for="exampleInputEmail1" class="form-label text-primary">Email address</label>
+            <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" name="emailswitch" type="checkbox" role="switch" id="emailswitch">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+            </div>
+            <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Enter email address here.." name="email">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-primary">Department Wise Filter</label>
+            <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" name="departmentswitch" type="checkbox" role="switch" id="depaertmentswitch">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+              </div>
+            <select class="form-select" aria-label="Default select example" name="department">
+                <option selected value="0">Select Department here</option>
+                {% for dept in alldept %}
+                <option value="{{dept.sno}}">{{dept.name}}</option>
+                {% endfor %}
+              </select>
+        </div>
+        <div class="mb-2">
+            <label for="lastname" class="form-label text-primary">Role Wise Filter</label>
+            <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" name="roleswitch" type="checkbox" role="switch" id="roleswitch">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+              </div>
+            <select class="form-select" aria-label="Default select example" name="role">
+                <option selected value="0">Select Role here</option>
+                {% for role in allrole %}
+                <option value="{{role.sno}}">{{role.name}}</option>
+                {% endfor %}
+              </select>
+        </div>
+        
+        <button type="submit" class="btn btn-sm btn-primary mb-2">Filter Employee</button>
+    </form>
+</div>
+<div class="container">
+    <nav class="navbar bg-secondary">
+        <form class="container-fluid justify-content-start" align="center">
+            <div class="container">
+                <a class="btn btn-sm btn-warning" type="button" href="/viewEmp">Views All Employee Details</a>
+                <a class="btn btn-sm btn-success" type="button" href="/addEmp">Add An Employee </a>
+                <a class="btn btn-sm btn-info" type="button" href="/updateEmp">Update An Employee </a>
+                <a class="btn btn-sm btn-danger" type="button" href="/removeEmp">Remove An Employee</a>
+                <a class="btn btn-sm btn-primary" type="button" href="/filterEmp">Filter An Employee Details</a>
+            </div>
+        </form>
+    </nav>
+</div> 
+{% endblock body%}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Update An Employee{% endblock title %}
+{% block heading %} <a href="/updateEmp" class="navbar-brand text-info"><h6>Update An Employee</h6></a>{% endblock heading %}
+{% block body %}
+<div class="container my-2">
+    <img src="/static/img/best1.png" height="300px" width="100%">
+    <form class="m-2" action="/updateEmp" method="post">
+        {% csrf_token %}
+        <div class="mb-2">
+            <label for="lastname" class="form-label text-info">Update Employee by id </label>
+            <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" name="idswitch" type="checkbox" role="switch" id="nameswitch">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+              </div>
+            <input type="number" class="form-control" id="updatebyid" name="updatebyid" placeholder="Enter Employee id here..">
+        </div>
+        <div class="mb-2">
+            <label for="lastname" class="form-label text-info">Update Employee by Name </label>
+            <div class="form-check form-switch form-check-inline">
+                <input class="form-check-input" name="nameswitch" type="checkbox" role="switch" id="nameswitch">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+              </div>
+              <input type="text" class="form-control" id="updatebyname" name="updatebyname" placeholder="Enter Name here..">
+        </div>
+        <button type="submit" class="btn btn-sm btn-info mb-2">Update Employee</button>
+    </form>
+</div>
+<div class="container">
+    <nav class="navbar bg-secondary">
+        <form class="container-fluid justify-content-start" align="center">
+            <div class="container">
+                <a class="btn btn-sm btn-warning" type="button" href="/viewEmp">Views All Employee Details</a>
+                <a class="btn btn-sm btn-success" type="button" href="/addEmp">Add An Employee </a>
+                <a class="btn btn-sm btn-info" type="button" href="/updateEmp">Update An Employee </a>
+                <a class="btn btn-sm btn-danger" type="button" href="/removeEmp">Remove An Employee</a>
+                <a class="btn btn-sm btn-primary" type="button" href="/filterEmp">Filter An Employee Details</a>
+            </div>
+        </form>
+    </nav>
+</div> 
+{% endblock body %}

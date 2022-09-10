@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Update An Employee{% endblock title %}
+{% block heading %} <a href="/updateEmp" class="navbar-brand text-info"><h6>Update Employee here...</h6></a>{% endblock heading %}
+{% block body %}
+<div class="container my-2">
+    {% if emp|length < 1 %}
+    <img src="/static/img/ooops.png" height="300px" width="100%">
+  {% else %}
+    <img src="/static/img/update1.png" height="300px" width="100%">
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Department</th>
+        <th scope="col">Role</th>
+        <th scope="col">Salary</th>
+        <th scope="col">Bonus</th>
+        <th scope="col">Phone no</th>
+        <th scope="col">Hire Date</th>
+      </tr>
+    </thead>
+    {% for e in emp %}
+    <tbody class="table-group-divider">
+      <tr>
+        <th scope="row">{{e.emp_id}}</th>
+        <td>{{e.first_name}}</td>
+        <td>{{e.last_name}}</td>
+        <td>{{e.email}}</td>
+        <td>{{e.dept.name}}</td>
+        <td>{{e.role.name}}</td>
+        <td>{{e.salary}}</td>
+        <td>{{e.bonus}}</td>
+        <td>{{e.phone}}</td>
+        <td>{{e.hire_date}}</td>
+        <td>
+            <form action="/updateEmp2" method="post">
+                {% csrf_token %} 
+            <input type="hidden" value="{{e.emp_id}}" name="updateid">
+            <button class="btn btn-sm btn-info">update</a>
+            </form>
+        </td>
+      </tr>  
+    </tbody>  
+    {% endfor %}
+  </table>         
+  {% endif %} 
+</div>
+{% endblock body %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Update An Employee{% endblock title %}
+{% block heading %} <a href="/updateEmp" class="navbar-brand text-info"><h6>Change Employee Details and Update here...</h6></a>{% endblock heading %}
+{% block body %}
+<div class="container my-2">
+    {% if x %}
+        <img src="/static/img/done1.png" height="300px" width="100%">
+    {% elif y %}
+        <img src="/static/img/sorry1.png" height="300px" width="100%">
+    {% else %}
+    <form class="m-2" action="/updateEmp3" method="post">
+        {% csrf_token %}
+        {% for e in emp %}
+        <img src="/static/img/up3.png" height="300px" width="100%">
+        <div class="mb-1">
+            <label for="firstname" class="form-label text-info">First Name</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" value="{{e.first_name}}" placeholder="Enter first name here.." required>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-info">Last Name</label>
+            <input type="text" class="form-control" id="lastname" name="lastname" value="{{e.last_name}}" placeholder="Enter last name here.." required>
+        </div>
+        <div class="mb-1">
+            <label for="exampleInputEmail1" class="form-label text-info">Email address</label>
+            <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Enter email address here.." name="email" value="{{e.email}}" required>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-info">Salary</label>
+            <input type="number" class="form-control" id="salary" name="salary" value="{{e.salary}}" placeholder="Enter salary here.." required>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-info">Bonus</label>
+            <input type="number" class="form-control" id="bonus" name="bonus" value="{{e.bonus}}" placeholder="Enter bonus here.." required>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-info">Department</label>
+            <select class="form-select" aria-label="Default select example" name="department" required>
+                <option value="{{e.dept.sno}}">{{e.dept.name}}</option>
+                {% for dept in alldept %}
+                <option value="{{forloop.counter}}">{{dept.name}}</option>
+                {% endfor %}
+              </select>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-info">Role</label>
+            <select class="form-select" aria-label="Default select example" name="role" required>
+                <option value="{{e.role.sno}}">{{e.role.name}}</option>
+                {% for role in allrole %}
+                <option value="{{forloop.counter}}">{{role.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-1">
+            <label for="lastname" class="form-label text-info">Phone Number</label>
+            <input type="number" class="form-control" id="phone" name="phone" value="{{e.phone}}" placeholder="Enter phone number here.." required>
+        </div>
+        <div class="mb-2">
+            <label for="lastname" class="form-label text-info">Hire Date</label>
+            <input type="date" class="form-control" id="hire" name="hire" value="{{e.hire_date}}" placeholder="Enter hire date here.." required>
+        </div>
+        <div class="mb-2 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="check">
+            <label class="form-check-label" for="exampleCheck1">Are you sure about all Update</label>
+        </div>
+        <input type="hidden" name="updateuserid" value="{{e.emp_id}}">
+        <button type="submit" class="btn btn-sm btn-info">Update Employee</button>
+        {% endfor %}
+    </form>
+    {% endif %}
+</div>
+{% endblock body %}

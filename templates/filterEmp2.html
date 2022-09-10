@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Filter Resultes{% endblock title %}
+{% block heading %} <a href="filterEmp" class="navbar-brand text-primary"><h6>Your Filter Resultes </h6></a>{% endblock heading %}
+{% block body %}
+
+<div class="container my-2">
+  {% if emp|length < 1 %}
+    <img src="/static/img/ooops.png" height="300px" width="100%">
+  {% else %}
+    <img src="/static/img/filter.png" height="300px" width="100%">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Department</th>
+          <th scope="col">Role</th>
+          <th scope="col">Salary</th>
+          <th scope="col">Phone no</th>
+          <th scope="col">Hire Date</th>
+        </tr>
+      </thead>
+      {% for e in emp %}
+        <tbody class="table-group-divider">
+          <tr>
+            <th scope="row">{{e.emp_id}}</th>
+            <td>{{e.first_name}}</td>
+            <td>{{e.last_name}}</td>
+            <td>{{e.email}}</td>
+            <td>{{e.dept.name}}</td>
+            <td>{{e.role.name}}</td>
+            <td>{{e.salary}}</td>
+            <td>{{e.phone}}</td>
+            <td>{{e.hire_date}}</td>
+          </tr>  
+        </tbody>  
+      {% endfor %}
+    </table>          
+  {% endif %}
+</div>
+{% endblock body%}

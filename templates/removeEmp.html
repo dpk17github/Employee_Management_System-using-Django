@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Remove An Employee{% endblock title %}
+{% block heading %} <a href="/removeEmp" class="navbar-brand text-danger"><h6>Remove An Employee</h6></a>{% endblock heading %}
+{% block body %}
+<div class="container my-2">
+    <img src="/static/img/sorry2.png" height="300px" width="100%">
+    <form class="m-2" action="/removeEmp" method="post">
+        {% csrf_token %}
+        <div class="mb-2">
+            <label for="lastname" class="form-label text-danger">Select An Employee to Remove</label>
+            <select class="form-select" aria-label="Default select example" name="removeEmp" required><br>
+                <option selected>Select Employee here..</option>
+                {% for emp in allemp %}
+                <option value="{{emp.emp_id}}">{{emp.first_name}} {{emp.last_name}} (Empployee_id = {{emp.emp_id}})</option>
+                {% endfor %}
+              </select>
+        </div>
+        <button type="submit" class="btn btn-sm btn-danger mb-2">Remove Employee</button>
+    </form>
+</div>
+<div class="container">
+    <nav class="navbar bg-secondary">
+        <form class="container-fluid justify-content-start" align="center">
+            <div class="container">
+                <a class="btn btn-sm btn-warning" type="button" href="/viewEmp">Views All Employee Details</a>
+                <a class="btn btn-sm btn-success" type="button" href="/addEmp">Add An Employee </a>
+                <a class="btn btn-sm btn-info" type="button" href="/updateEmp">Update An Employee </a>
+                <a class="btn btn-sm btn-danger" type="button" href="/removeEmp">Remove An Employee</a>
+                <a class="btn btn-sm btn-primary" type="button" href="/filterEmp">Filter An Employee Details</a>
+            </div>
+        </form>
+    </nav>
+</div> 
+{% endblock body%}
